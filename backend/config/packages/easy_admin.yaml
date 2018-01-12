@@ -1,0 +1,19 @@
+easy_admin:
+    site_name: 'Tree'
+    entities:
+        Person:
+            class: App\Entity\Person
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - { property: 'parents', type: 'array' }
+                    - { property: 'children', type: 'array' }
+                    - { property: 'image', type: 'image', base_path: '%app.path.post_images%' }
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'parents', label: 'parents' , type: 'entity', type_options: { class: 'App\Entity\Person', multiple: true } }
+                    - { property: 'children', label: 'children' , type: 'entity', type_options: { class: 'App\Entity\Person', multiple: true } }
+#                    - { property: 'children', label: 'children' , type_options: { expanded: true, multiple: true } }
